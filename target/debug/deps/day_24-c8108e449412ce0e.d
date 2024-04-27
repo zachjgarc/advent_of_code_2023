@@ -1,0 +1,7 @@
+C:\Users\zacha\OneDrive\Desktop\Code\advent_of_code_2023\target\debug\deps\libday_24-c8108e449412ce0e.rmeta: days\day_24\src/lib.rs days\day_24\src\one.rs days\day_24\src\two.rs
+
+C:\Users\zacha\OneDrive\Desktop\Code\advent_of_code_2023\target\debug\deps\day_24-c8108e449412ce0e.d: days\day_24\src/lib.rs days\day_24\src\one.rs days\day_24\src\two.rs
+
+days\day_24\src/lib.rs:
+days\day_24\src\one.rs:
+days\day_24\src\two.rs:

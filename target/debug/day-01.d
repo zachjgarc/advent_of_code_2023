@@ -1,0 +1,1 @@
+C:\Users\zacha\OneDrive\Desktop\Code\advent_of_code_2023\target\debug\day-01.exe: C:\Users\zacha\OneDrive\Desktop\Code\advent_of_code_2023\day-01\src\main.rs C:\Users\zacha\OneDrive\Desktop\Code\advent_of_code_2023\utils\src\lib.rs

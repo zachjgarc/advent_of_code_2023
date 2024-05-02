@@ -9,5 +9,5 @@ pub fn run(input: &String) {
         sum += first * 10 + last;
     }
 
-    println!("{}", sum);
+    println!("One: {}", sum);
 }

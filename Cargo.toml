@@ -9,3 +9,6 @@ members = [
     "interface",
     "utils"
 ]
+
+[build]
+rustflags = ["-A unused_variables", "-A unused_mut"]

@@ -9,5 +9,5 @@ pub fn run(input: &str) {
         }
     }
 
-    println!("{}", sum);
+    println!("One: {}", sum);
 }

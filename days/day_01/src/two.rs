@@ -9,7 +9,7 @@ pub fn run(input: &String) {
         sum += first * 10 + last;
     }
 
-    println!("{}", sum);
+    println!("One: {}", sum);
 }
 
 fn parse_line(line: &str) -> Vec<u32> {

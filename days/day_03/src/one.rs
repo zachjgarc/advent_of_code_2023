@@ -63,5 +63,5 @@ pub fn run(input: &String) {
         prev_line = Some(line);
     }
 
-    println!("{}", sum);
+    println!("One: {}", sum);
 }

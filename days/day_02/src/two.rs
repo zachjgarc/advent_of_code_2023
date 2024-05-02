@@ -7,5 +7,5 @@ pub fn run(input: &String) {
         sum += line_data[0] * line_data[1] * line_data[2];
     }
 
-    println!("{}", sum);
+    println!("One: {}", sum);
 }

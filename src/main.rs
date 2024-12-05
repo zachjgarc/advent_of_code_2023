@@ -72,7 +72,7 @@ fn run_day(day: u32, test: bool) {
 
     let input_dir: &str = if test { "test inputs" } else { "inputs" };
     let input_file: String = format!("src/{}/day_{}.txt", input_dir, day_str);
-    let _input: String = match fs::read_to_string(&input_file) {
+    let input: String = match fs::read_to_string(&input_file) {
         Ok(content) => content,
         Err(_) => {
             eprintln!("Failed to read input file: {}", input_file);
@@ -81,10 +81,19 @@ fn run_day(day: u32, test: bool) {
     };
 
     let mut start_time: Instant;
-    let runtime_one: Duration;
-    let runtime_two: Duration;
+    let (runtime_one, runtime_two): (Duration, Duration);
+    let (solution_one, solution_two): (i32, i32);
 
     match day_str.as_str() {
+		"01" => {
+            start_time = Instant::now();
+            solution_one = days::day_01::one::run(&input);
+            runtime_one = start_time.elapsed();
+
+            start_time = Instant::now();
+            solution_two = days::day_01::two::run(&input);
+            runtime_two = start_time.elapsed();
+        },
 		_ => {
             if day > 25 {
                 eprintln!("Day {} does not exist", day_str);
@@ -95,7 +104,7 @@ fn run_day(day: u32, test: bool) {
         }
     }
 
-    println!("Part one: {:?}\nPart two: {:?}", runtime_one, runtime_two);
+    println!("Part one: {}, ran in {:?}\nPart two: {}, ran in {:?}", solution_one, runtime_one, solution_two, runtime_two);
 }
 
 fn add_new_day(day: u32) {
@@ -119,19 +128,19 @@ fn add_new_day(day: u32) {
     // write placeholder to one.rs and two.rs
     let one_path: String = format!("{}/one.rs", day_dir);
     fs::write(&one_path, 
-        format!("{}\n{}\n\n{}",
-            "#[allow(unused_imports)]\n",
-            "use crate::utils::prelude::*;\n\n",
-            "pub fn run(input: &String) {}")
+        format!("{}\n{}\n{}",
+            "#[allow(unused_imports)]",
+            "use crate::utils::prelude::*;",
+            "\npub fn run(input: &String) -> i32 {\n\t-1\n}")
         )
         .expect("Failed to write two.rs");
     
     let two_path: String = format!("{}/two.rs", day_dir);
     fs::write(&two_path, 
-        format!("{}\n{}\n\n{}",
-            "#[allow(unused_imports)]\n",
-            "use crate::utils::prelude::*;\n\n",
-            "pub fn run(input: &String) {}")
+        format!("{}\n{}\n{}",
+            "#[allow(unused_imports)]",
+            "use crate::utils::prelude::*;",
+            "\npub fn run(input: &String) -> i32 {\n\t-1\n}")
         )
         .expect("Failed to write two.rs");
 
@@ -187,11 +196,11 @@ fn add_new_day(day: u32) {
     let add_to_run_day = format!(
         "\"{}\" => {{
             start_time = Instant::now();
-            days::day_{}::one::run(&_input);
+            solution_one = days::day_{}::one::run(&input);
             runtime_one = start_time.elapsed();
 
             start_time = Instant::now();
-            days::day_{}::two::run(&_input);
+            solution_two = days::day_{}::two::run(&input);
             runtime_two = start_time.elapsed();
         }},\n\t\t",
         day_str, day_str, day_str
@@ -209,7 +218,7 @@ fn add_new_day(day: u32) {
 }
 
 fn read_multiline_input() -> String {
-    println!("Press Ctrl+Z (Windows) followed by Enter to finish:");
+    println!("RMB to paste, Ctrl+Z (Windows) or Cmd+D (MacOS) to enter:");
     let mut input = String::new();
     match io::stdin().read_to_string(&mut input) {
         Ok(_) => input,
